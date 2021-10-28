@@ -60,11 +60,16 @@ class MainActivity : AppCompatActivity() {
                     // positive button text and action
                 dialogBuilder.setPositiveButton("ok", DialogInterface.OnClickListener { dialog, id ->
                         var dbhlr = DBHlr(this)
+                    if(input.text.isEmpty())
+                        Toast.makeText(this, "Not updated, the field is empty", Toast.LENGTH_SHORT).show()
+                    else {
                         val str = input.text.toString()
                         dbhlr.update(s1, str)
-                    println("updated item")
-                    //retrieve data and update recycler view
-                    show()
+                        println("updated item")
+                        Toast.makeText(this, "updated successfully", Toast.LENGTH_SHORT).show()
+                        //retrieve data and update recycler view
+                        show()
+                    }
                 })
                     // negative button text and action
                     .setNegativeButton("cancel", DialogInterface.OnClickListener { dialog, id ->
